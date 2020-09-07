@@ -11,7 +11,7 @@ mcp2515-spi60.dtbo mcp2515-spi61.dtbo
 
 OVERLAYS = $(DTBOs:.dtbo=-overlay.dts)
 
-.PHONY = clean all install
+.PHONY = clean all install-raspbian install-ubuntu
 .SECONDARY: $(OVERLAYS)
 .SUFFIXES:
 
@@ -25,7 +25,10 @@ $(OVERLAYS): $(TEMPLATE_FILENAME)
 %.dtbo: %-overlay.dts
 	@dtc -I dts -O dtb -o $@ $<
 
-install: $(DTBOs)
+install-raspbian: $(DTBOs)
+	cp $(DTBOs) /boot/firmware/overlays/
+
+install-ubuntu: $(DTBOs)
 	cp $(DTBOs) /boot/firmware/overlays/
 
 clean:
