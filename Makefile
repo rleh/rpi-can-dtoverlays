@@ -26,7 +26,7 @@ $(OVERLAYS): $(TEMPLATE_FILENAME)
 	@dtc -I dts -O dtb -o $@ $<
 
 install-raspbian: $(DTBOs)
-	cp $(DTBOs) /boot/firmware/overlays/
+	cp $(DTBOs) /boot/overlays/
 
 install-ubuntu: $(DTBOs)
 	cp $(DTBOs) /boot/firmware/overlays/
